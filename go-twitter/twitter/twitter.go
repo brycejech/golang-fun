@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 type TokenResponse struct {
@@ -132,9 +133,32 @@ func GetTwitterUserByHandle(handle string) TwitterUser {
 
 func GetTweetsByUserId(userId string) []Tweet {
 	method := "GET"
-	url := fmt.Sprintf("%v/2/users/%v/tweets?max_results=10&tweet.fields=id,text,created_at", BASE_URL, userId)
+	url := fmt.Sprintf("%v/2/users/%v/tweets?max_results=5&tweet.fields=id,text,created_at", BASE_URL, userId)
 
 	userTweets := doRequest[GetTweets](method, url)
 
 	return userTweets.Data
+}
+
+func FormatTweet(tweet Tweet, handle string) string {
+	const length = 100
+
+	var strings []string
+
+	createdAt, _ := time.Parse(time.RFC3339, tweet.CreatedAt)
+	formattedTime := createdAt.Format("Jan 02 2006")
+	title := fmt.Sprintf("On %v, %v tweeted:\n\n", formattedTime, handle)
+	strings = append(strings, title)
+
+	var tmpStr string
+	for _, char := range tweet.Text {
+		str := string(char)
+		if str == "\n" {
+			strings = append(strings, tmpStr)
+			tmpStr = ""
+		}
+		tmpStr += str
+		// if()
+	}
+	return ""
 }
