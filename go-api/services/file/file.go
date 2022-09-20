@@ -14,3 +14,9 @@ func GetFileContents(path string) []byte {
 
 	return bytes
 }
+
+func WriteFile(path string, data []byte) (ok bool) {
+	err := os.WriteFile(path, data, 0755)
+
+	return err == nil
+}

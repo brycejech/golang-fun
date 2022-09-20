@@ -1,8 +1,1 @@
-[
-  {
-    "firstName": "Bryce",
-    "lastName": "Jech",
-    "email": "bryce@brycejech.com",
-    "password": "s3cureP4$$word"
-  }
-]
+[{"id":"2fbfce31-c8d7-45e6-a8b5-4cfad8cbe3f0","firstName":"Bryce","lastName":"Jech","email":"bryce@brycejech.com","password":"s3cureP4$$word"},{"id":"2fbfce31-c8d7-45e6-a8b5-4cfad8cbe3f9","firstName":"Laryn","lastName":"Jech","email":"laryn.jech@icloud.com","password":"theS3curePassword"},{"id":"af15a8f3-f943-4876-88dd-00c3a8d919ba","firstName":"Wylie","lastName":"Bierig","email":"bierig.wylie@gmail.com","password":"194kDDJje9475"},{"id":"76c90db0-e72d-41b5-8018-162a1c074082","firstName":"Kyndal","lastName":"Bierig","email":"bierig.kyndal@gmail.com","password":"194kDDJje9475"}]

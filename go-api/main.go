@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"go-api/controllers/userController"
-	userService "go-api/services/user"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,11 +12,9 @@ func main() {
 	r.GET("/", getRoot)
 
 	r.GET("/users", userController.GetUsers)
+	r.POST("/users", userController.CreateUser)
 
 	r.Run(":8888")
-
-	users := userService.GetUsers()
-	fmt.Println(users)
 }
 
 func getRoot(c *gin.Context) {
