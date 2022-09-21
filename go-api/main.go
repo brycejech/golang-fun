@@ -1,9 +1,13 @@
 package main
 
 import (
-	"go-api/controllers/userController"
+	"go-api/controllers"
 
 	"github.com/gin-gonic/gin"
+)
+
+var (
+	userController = controllers.NewUserController()
 )
 
 func main() {
