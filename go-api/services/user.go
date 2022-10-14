@@ -10,6 +10,7 @@ import (
 type UserService interface {
 	GetUsers() []entity.User
 	CreateUser(firstName string, lastName string, email string, username string, password string) (entity.User, error)
+	GetUser(id string) (user entity.User, ok bool)
 }
 
 type userService struct{}
@@ -52,4 +53,30 @@ func (service *userService) CreateUser(firstName string, lastName string, email 
 	file.WriteFile("data/users.json", bytes)
 
 	return user, nil
+}
+
+func (service *userService) GetUser(id string) (entity.User, bool) {
+	users := service.GetUsers()
+
+	user := entity.User{}
+	for _, item := range users {
+		if item.Id == id {
+			return item, true
+		}
+	}
+
+	return user, false
+}
+
+func (service *userService) UpdateUser(user entity.User) (entity.User, bool) {
+	users := service.GetUsers()
+
+	length := len(users)
+	for i, u := range users {
+		if u.Id == user.Id {
+			users = append(users[0:i], user)
+			users = append(users, users[i+1:length]...)
+			return users, true
+		}
+	}
 }

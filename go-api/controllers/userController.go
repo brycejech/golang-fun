@@ -11,6 +11,7 @@ import (
 type UserController interface {
 	GetUsers(ctx *gin.Context)
 	CreateUser(ctx *gin.Context)
+	GetUser(ctx *gin.Context)
 }
 
 type userController struct{}
@@ -44,5 +45,15 @@ func (controller *userController) CreateUser(c *gin.Context) {
 
 		c.JSON(http.StatusOK, user)
 	}
+}
 
+func (controller *userController) GetUser(c *gin.Context) {
+	id := c.Param("id")
+
+	if user, ok := userService.GetUser(id); ok {
+		c.JSON(http.StatusOK, user)
+		return
+	}
+
+	c.String(http.StatusNotFound, "Not Found")
 }
